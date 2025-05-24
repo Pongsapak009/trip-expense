@@ -2,7 +2,7 @@
 <html lang="th">
 <head>
   <meta charset="UTF-8" />
-  <title>Trip Expense Summary</title>
+  <title>Trip Expense Summary - Idol Theme</title>
   <link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
@@ -168,7 +168,7 @@
   </style>
 </head>
 <body>
-  <h1>Trip Expense Summary</h1>
+  <h1>Trip Expense Summary <span style="font-size:0.7em;">(ธีมไอดอล pastel!)</span></h1>
 
   <div class="section">
     <label>วันที่เดินทางไป: <input type="date" id="startDate" onchange="updateMinEndDate()"></label>
@@ -377,12 +377,15 @@
     function renderTransportList() {
       const listDiv = document.getElementById('transportList');
       listDiv.innerHTML = '';
-      transportData.forEach((item, idx) => {
+      // เรียงวันจากน้อยไปมาก
+      const sorted = [...transportData].sort((a, b) => a.date.localeCompare(b.date));
+      sorted.forEach(item => {
+        const realIdx = transportData.findIndex(x => x === item);
         const row = document.createElement('div');
         row.className = 'list-item';
         row.innerHTML = `
           <span>${formatDateTH(item.date)} | ${item.type} | ${item.detail} | ${item.price} บาท</span>
-          <button class="danger" onclick="removeTransport(${idx})">ลบ</button>
+          <button class="danger" onclick="removeTransport(${realIdx})">ลบ</button>
         `;
         listDiv.appendChild(row);
       });
@@ -410,12 +413,14 @@
     function renderFoodList() {
       const listDiv = document.getElementById('foodList');
       listDiv.innerHTML = '';
-      foodData.forEach((item, idx) => {
+      const sorted = [...foodData].sort((a, b) => a.date.localeCompare(b.date));
+      sorted.forEach(item => {
+        const realIdx = foodData.findIndex(x => x === item);
         const row = document.createElement('div');
         row.className = 'list-item';
         row.innerHTML = `
           <span>${formatDateTH(item.date)} | ${item.detail} | ${item.price} บาท</span>
-          <button class="danger" onclick="removeFood(${idx})">ลบ</button>
+          <button class="danger" onclick="removeFood(${realIdx})">ลบ</button>
         `;
         listDiv.appendChild(row);
       });
@@ -442,12 +447,14 @@
     function renderMiscList() {
       const listDiv = document.getElementById('miscList');
       listDiv.innerHTML = '';
-      miscData.forEach((item, idx) => {
+      const sorted = [...miscData].sort((a, b) => a.date.localeCompare(b.date));
+      sorted.forEach(item => {
+        const realIdx = miscData.findIndex(x => x === item);
         const row = document.createElement('div');
         row.className = 'list-item';
         row.innerHTML = `
           <span>${formatDateTH(item.date)} | ${item.detail} | ${item.price} บาท</span>
-          <button class="danger" onclick="removeMisc(${idx})">ลบ</button>
+          <button class="danger" onclick="removeMisc(${realIdx})">ลบ</button>
         `;
         listDiv.appendChild(row);
       });
