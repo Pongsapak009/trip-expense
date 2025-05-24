@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <title>Trip Expense Summary</title>
+  <link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Mali', cursive, sans-serif;
+      background: linear-gradient(135deg, #fceabb 0%, #f8b6d8 100%);
+      padding: 20px;
+      min-height: 100vh;
+      color: #6d4584;
+    }
+    h1 {
+      color: #eb6ea5;
+      background: #fff4fa;
+      padding: 12px 24px;
+      border-radius: 22px;
+      margin-bottom: 24px;
+      font-size: 2.3em;
+      letter-spacing: 1.5px;
+      text-align: center;
+      box-shadow: 0 4px 16px #f8b6d844;
+    }
+    .section {
+      background: #fff;
+      border: 3px solid #ffd8f0;
+      padding: 22px 18px;
+      margin-top: 22px;
+      border-radius: 22px;
+      box-shadow: 0 4px 18px #fccde288;
+      position: relative;
+    }
+    .section h3 {
+      color: #a477d1;
+      font-size: 1.4em;
+      background: linear-gradient(90deg, #ffe0ef 70%, #e8e9fd 100%);
+      padding: 8px 16px;
+      border-radius: 14px;
+      margin-top: -28px;
+      display: inline-block;
+      margin-bottom: 16px;
+      border: 2px solid #edb1d6;
+      box-shadow: 0 2px 8px #e5baff33;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+      color: #744e8e;
+      font-size: 1.09em;
+    }
+    input[type='text'], input[type='number'], input[type='date'], select {
+      padding: 6px 12px;
+      margin: 4px 8px 4px 0;
+      border-radius: 10px;
+      border: 1.5px solid #ebc1e6;
+      font-family: 'Mali', cursive, sans-serif;
+      font-size: 1em;
+      background: #fff6fd;
+      color: #6d4584;
+      outline: none;
+      transition: border 0.2s;
+    }
+    input[type='text']:focus, input[type='number']:focus, input[type='date']:focus, select:focus {
+      border: 2px solid #a477d1;
+      background: #fff1fa;
+    }
+    .list-box {
+      margin: 18px 0 6px 0;
+      border-radius: 15px;
+      background: #fffafd;
+      box-shadow: 0 2px 6px #e5baff44;
+      padding: 12px 12px 3px 12px;
+      min-height: 30px;
+    }
+    .list-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(90deg,#fff 80%,#ffe0ef 100%);
+      border-radius: 11px;
+      margin-bottom: 8px;
+      padding: 8px 10px;
+      font-size: 1.03em;
+      border: 1px solid #f6c7e9;
+      box-shadow: 0 1px 5px #e5baff22;
+      transition: background 0.2s;
+    }
+    .list-item span {
+      flex: 1;
+      color: #7a4897;
+    }
+    .danger {
+      background: linear-gradient(135deg,#ffbad2 60%,#e8e9fd 100%);
+      color: #fff;
+      border: none;
+      padding: 4px 20px;
+      border-radius: 9px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background 0.18s, box-shadow 0.18s;
+      margin-left: 10px;
+      box-shadow: 0 2px 8px #f8b6d822;
+    }
+    .danger:hover {
+      background: linear-gradient(135deg,#e66fa2 40%,#b6b6ec 100%);
+    }
+    .add-btn {
+      background: linear-gradient(135deg,#97cdfd 0%,#e9b5fa 100%);
+      color: #fff;
+      border: none;
+      padding: 7px 22px;
+      border-radius: 15px;
+      font-size: 1em;
+      margin: 10px 5px 0 0;
+      cursor: pointer;
+      transition: background 0.15s, box-shadow 0.18s;
+      box-shadow: 0 3px 13px #b1c0ff22;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+    }
+    .add-btn:disabled, .disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+    .summary-box {
+      border: 3px solid #97cdfd;
+      background: linear-gradient(90deg,#f5fff6 70%,#f6eaff 100%);
+      margin-top: 40px;
+      color: #7a4897;
+      box-shadow: 0 3px 15px #bbcaf644;
+      font-size: 1.14em;
+      border-radius: 22px;
+      padding: 23px;
+      text-align: center;
+    }
+    .summary-box .total-amount {
+      color: #fff;
+      background: linear-gradient(90deg,#eb6ea5 60%,#a477d1 100%);
+      display: inline-block;
+      margin: 14px 0 4px 0;
+      border-radius: 12px;
+      padding: 6px 24px;
+      font-size: 1.28em;
+      font-weight: bold;
+      box-shadow: 0 2px 9px #e5baff66;
+    }
+    .warn { color: #e66fa2; font-weight: bold; }
+    .hotel-group {
+      background: #fcf6ff;
+      border-radius: 15px;
+      box-shadow: 0 1px 6px #e5baff33;
+      padding: 12px 10px 3px 12px;
+      margin-bottom: 10px;
+      border: 1.5px solid #edb1d6;
+    }
+    .hotel-group button {
+      float: right;
+      margin-top: -38px;
+      margin-right: 0;
+      position: relative;
+    }
+    @media (max-width: 650px) {
+      .list-item, .hotel-group { font-size: 0.95em; flex-direction: column; align-items: flex-start;}
+      .list-item button { margin-left: 0; margin-top: 8px;}
+    }
+  </style>
+</head>
+<body>
+  <h1>Trip Expense Summary</h1>
+
+  <div class="section">
+    <label>วันที่เดินทางไป: <input type="date" id="startDate" onchange="updateMinEndDate()"></label>
+    <label>วันที่เดินทางกลับ: <input type="date" id="endDate" onchange="updateAllDateLimits()"></label>
+    <div>จำนวนวันในทริป: <span id="tripDays">0</span> วัน | <span id="tripNights">0</span> คืน</div>
+  </div>
+
+  <div class="section">
+    <h3>ที่พัก</h3>
+    <div id="hotels"></div>
+    <button id="addHotelBtn" class="add-btn" onclick="addHotel()">เพิ่มที่พัก</button>
+    <div id="hotelNightSumWarn" class="warn"></div>
+  </div>
+
+  <div class="section">
+    <h3>ค่าเดินทาง</h3>
+    <div id="transportList" class="list-box"></div>
+    <label>
+      <input type="date" id="transportDate">
+      <select id="transportType">
+        <option value="รถสองแถว">รถสองแถว</option>
+        <option value="รถเมล์">รถเมล์</option>
+        <option value="รถไฟฟ้า">รถไฟฟ้า</option>
+        <option value="วินมอเตอร์ไซค์">วินมอเตอร์ไซค์</option>
+        <option value="เรือ">เรือ</option>
+        <option value="รถตู้/มินิบัส">รถตู้/มินิบัส</option>
+        <option value="รถทัวร์">รถทัวร์</option>
+        <option value="รถไฟ">รถไฟ</option>
+        <option value="เครื่องบิน">เครื่องบิน</option>
+        <option value="แท็กซี่">แท็กซี่</option>
+        <option value="Grab">Grab/แอปเรียกรถ</option>
+        <option value="รถยนต์ส่วนตัว">รถยนต์ส่วนตัว</option>
+        <option value="อื่น ๆ">อื่น ๆ</option>
+      </select>
+      <input type="text" id="transportDetail" placeholder="รายละเอียด">
+      <input type="number" id="transportPrice" placeholder="ราคา">
+      <button class="add-btn" onclick="addTransport()">เพิ่ม</button>
+    </label>
+  </div>
+
+  <div class="section">
+    <h3>ค่าอาหาร</h3>
+    <div id="foodList" class="list-box"></div>
+    <label>
+      <input type="date" id="foodDate">
+      <input type="text" id="foodDetail" placeholder="รายละเอียดอาหาร">
+      <input type="number" id="foodPrice" placeholder="ราคา">
+      <button class="add-btn" onclick="addFood()">เพิ่ม</button>
+    </label>
+  </div>
+
+  <div class="section">
+    <h3>ค่าใช้จ่ายจิปาถะ/อื่น ๆ</h3>
+    <div id="miscList" class="list-box"></div>
+    <label>
+      <input type="date" id="miscDate">
+      <input type="text" id="miscDetail" placeholder="รายละเอียดจิปาถะ">
+      <input type="number" id="miscPrice" placeholder="ราคา">
+      <button class="add-btn" onclick="addMisc()">เพิ่ม</button>
+    </label>
+  </div>
+
+  <div class="summary-box">
+    <div>รวมค่า <b>ที่พัก</b>: <span id="sumHotel">0</span> บาท</div>
+    <div>รวมค่า <b>เดินทาง</b>: <span id="sumTransport">0</span> บาท</div>
+    <div>รวมค่า <b>อาหาร</b>: <span id="sumFood">0</span> บาท</div>
+    <div>รวมค่า <b>จิปาถะ</b>: <span id="sumMisc">0</span> บาท</div>
+    <hr>
+    <div class="total-amount">ค่าใช้จ่ายรวมทั้งทริป: <span id="sumTotal">0</span> บาท</div>
+  </div>
+
+  <script>
+    let hotelCount = 0;
+    let transportData = [];
+    let foodData = [];
+    let miscData = [];
+
+    function getTripDays() {
+      const s = document.getElementById('startDate').value;
+      const e = document.getElementById('endDate').value;
+      if (s && e) {
+        const start = new Date(s);
+        const end = new Date(e);
+        if (end >= start) {
+          return Math.ceil((end - start) / (1000 * 60 * 60 * 24)) + 1;
+        }
+      }
+      return 0;
+    }
+    function getTripNights() {
+      let days = getTripDays();
+      return days > 1 ? days - 1 : 0;
+    }
+    function updateTripDays() {
+      document.getElementById('tripDays').textContent = getTripDays();
+      document.getElementById('tripNights').textContent = getTripNights();
+      updateHotelNightLimit();
+      updateAllDateLimits();
+      calcAllSums();
+    }
+    document.getElementById('startDate').addEventListener('change', updateTripDays);
+    document.getElementById('endDate').addEventListener('change', updateTripDays);
+
+    function addHotel() {
+      hotelCount++;
+      const div = document.createElement('div');
+      div.className = 'hotel-group';
+      div.id = 'hotelDiv'+hotelCount;
+      div.innerHTML = `
+        <label>ชื่อที่พัก: <input type="text" class="hotelName" onchange="calcAllSums()"></label>
+        <label>วันที่เข้าพัก: <input type="date" class="hotelStartDate" onchange="validateHotelDates(this);updateHotelNightLimit();calcAllSums()"></label>
+        <label>วันที่ออก: <input type="date" class="hotelEndDate" onchange="validateHotelDates(this);updateHotelNightLimit();calcAllSums()"></label>
+        <label>ราคารวม: <input type="number" class="hotelPrice" onchange="calcAllSums()"></label>
+        <label><input type="checkbox" class="includeBreakfast"> รวมอาหารเช้า</label>
+        <button class="danger" onclick="removeHotel(this)">ลบ</button>
+        <hr />
+      `;
+      document.getElementById('hotels').appendChild(div);
+      updateAllDateLimits();
+      calcAllSums();
+      updateAddHotelButton();
+    }
+    function removeHotel(btn) {
+      btn.closest('.hotel-group').remove();
+      updateHotelNightLimit();
+      calcAllSums();
+      updateAddHotelButton();
+    }
+    function updateMinEndDate() {
+      const start = document.getElementById('startDate').value;
+      document.getElementById('endDate').min = start;
+      updateTripDays();
+    }
+    function updateAllDateLimits() {
+      const s = document.getElementById('startDate').value;
+      const e = document.getElementById('endDate').value;
+      ["transportDate","foodDate","miscDate"].forEach(id=>{
+        document.getElementById(id).min = s;
+        document.getElementById(id).max = e;
+      });
+      document.querySelectorAll('.hotelStartDate').forEach(input => { input.min = s; input.max = e; });
+      document.querySelectorAll('.hotelEndDate').forEach(input => { input.min = s; input.max = e; });
+    }
+    function countHotelNights(start, end) {
+      if (!start || !end) return 0;
+      let d1 = new Date(start), d2 = new Date(end);
+      let diff = Math.ceil((d2 - d1) / (1000*60*60*24));
+      return diff > 0 ? diff : 0;
+    }
+    function validateHotelDates(input) {
+      let div = input.closest('.hotel-group');
+      let inDate = div.querySelector('.hotelStartDate').value;
+      let outDate = div.querySelector('.hotelEndDate').value;
+      if (inDate && outDate && outDate <= inDate) {
+        div.querySelector('.hotelEndDate').value = '';
+      }
+      updateHotelNightLimit();
+      calcAllSums();
+      updateAddHotelButton();
+    }
+    function updateHotelNightLimit() {
+      let totalNights = 0;
+      document.querySelectorAll('.hotel-group').forEach(div => {
+        let inDate = div.querySelector('.hotelStartDate').value;
+        let outDate = div.querySelector('.hotelEndDate').value;
+        totalNights += countHotelNights(inDate, outDate);
+      });
+      let tripNights = getTripNights();
+      if (totalNights > tripNights) {
+        document.getElementById('hotelNightSumWarn').textContent = `จำนวนคืนรวม (${totalNights}) เกินจำนวนคืนของทริป (${tripNights})`;
+      } else {
+        document.getElementById('hotelNightSumWarn').textContent = '';
+      }
+      updateAddHotelButton();
+    }
+    function updateAddHotelButton() {
+      const hotelDivs = document.querySelectorAll('.hotel-group');
+      const btn = document.getElementById('addHotelBtn');
+      const tripNights = getTripNights();
+      let totalNights = 0;
+      let canAdd = true;
+      hotelDivs.forEach((div, idx) => {
+        let inDate = div.querySelector('.hotelStartDate').value;
+        let outDate = div.querySelector('.hotelEndDate').value;
+        let nights = countHotelNights(inDate, outDate);
+        totalNights += nights;
+        if(idx === hotelDivs.length-1 && (!inDate || !outDate || nights === 0)) {
+          canAdd = false;
+        }
+      });
+      if(totalNights >= tripNights) canAdd = false;
+      btn.disabled = !canAdd;
+      if (!canAdd) {
+        btn.classList.add('disabled');
+      } else {
+        btn.classList.remove('disabled');
+      }
+    }
+    function formatDateTH(isoDateStr) {
+      if (!isoDateStr) return '';
+      const [y, m, d] = isoDateStr.split('-');
+      return `${d}/${m}/${parseInt(y) + 543}`;
+    }
+
+    // ----- หมวด เดินทาง -----
+    function renderTransportList() {
+      const listDiv = document.getElementById('transportList');
+      listDiv.innerHTML = '';
+      transportData.forEach((item, idx) => {
+        const row = document.createElement('div');
+        row.className = 'list-item';
+        row.innerHTML = `
+          <span>${formatDateTH(item.date)} | ${item.type} | ${item.detail} | ${item.price} บาท</span>
+          <button class="danger" onclick="removeTransport(${idx})">ลบ</button>
+        `;
+        listDiv.appendChild(row);
+      });
+    }
+    function addTransport() {
+      const date = document.getElementById('transportDate').value;
+      const type = document.getElementById('transportType').value;
+      const detail = document.getElementById('transportDetail').value;
+      const price = document.getElementById('transportPrice').value;
+      if (!date) { alert('กรุณาเลือกวันที่เดินทาง'); return; }
+      const s = document.getElementById('startDate').value;
+      const e = document.getElementById('endDate').value;
+      if (date < s || date > e) { alert('วันที่เดินทางอยู่นอกช่วงทริป'); return; }
+      transportData.push({date, type, detail, price});
+      renderTransportList();
+      calcAllSums();
+    }
+    function removeTransport(idx) {
+      transportData.splice(idx, 1);
+      renderTransportList();
+      calcAllSums();
+    }
+
+    // ----- หมวด อาหาร -----
+    function renderFoodList() {
+      const listDiv = document.getElementById('foodList');
+      listDiv.innerHTML = '';
+      foodData.forEach((item, idx) => {
+        const row = document.createElement('div');
+        row.className = 'list-item';
+        row.innerHTML = `
+          <span>${formatDateTH(item.date)} | ${item.detail} | ${item.price} บาท</span>
+          <button class="danger" onclick="removeFood(${idx})">ลบ</button>
+        `;
+        listDiv.appendChild(row);
+      });
+    }
+    function addFood() {
+      const date = document.getElementById('foodDate').value;
+      const detail = document.getElementById('foodDetail').value;
+      const price = document.getElementById('foodPrice').value;
+      if (!date) { alert('กรุณาเลือกวันที่ทานอาหาร'); return; }
+      const s = document.getElementById('startDate').value;
+      const e = document.getElementById('endDate').value;
+      if (date < s || date > e) { alert('วันที่ทานอาหารอยู่นอกช่วงทริป'); return; }
+      foodData.push({date, detail, price});
+      renderFoodList();
+      calcAllSums();
+    }
+    function removeFood(idx) {
+      foodData.splice(idx, 1);
+      renderFoodList();
+      calcAllSums();
+    }
+
+    // ----- หมวด จิปาถะ -----
+    function renderMiscList() {
+      const listDiv = document.getElementById('miscList');
+      listDiv.innerHTML = '';
+      miscData.forEach((item, idx) => {
+        const row = document.createElement('div');
+        row.className = 'list-item';
+        row.innerHTML = `
+          <span>${formatDateTH(item.date)} | ${item.detail} | ${item.price} บาท</span>
+          <button class="danger" onclick="removeMisc(${idx})">ลบ</button>
+        `;
+        listDiv.appendChild(row);
+      });
+    }
+    function addMisc() {
+      const date = document.getElementById('miscDate').value;
+      const detail = document.getElementById('miscDetail').value;
+      const price = document.getElementById('miscPrice').value;
+      if (!date) { alert('กรุณาเลือกวันที่'); return; }
+      const s = document.getElementById('startDate').value;
+      const e = document.getElementById('endDate').value;
+      if (date < s || date > e) { alert('วันที่อยู่นอกช่วงทริป'); return; }
+      miscData.push({date, detail, price});
+      renderMiscList();
+      calcAllSums();
+    }
+    function removeMisc(idx) {
+      miscData.splice(idx, 1);
+      renderMiscList();
+      calcAllSums();
+    }
+
+    // ------ รวมยอด ------
+    function calcAllSums() {
+      // สรุปยอดที่พัก
+      let hotelSum = 0;
+      document.querySelectorAll('.hotel-group').forEach(div => {
+        let price = parseFloat(div.querySelector('.hotelPrice').value||'0');
+        hotelSum += isNaN(price)?0:price;
+      });
+      document.getElementById('sumHotel').textContent = hotelSum;
+
+      // สรุปค่าเดินทาง
+      let transportSum = 0;
+      transportData.forEach(item => {
+        let val = parseFloat(item.price||'0');
+        transportSum += isNaN(val)?0:val;
+      });
+      document.getElementById('sumTransport').textContent = transportSum;
+
+      // สรุปค่าอาหาร
+      let foodSum = 0;
+      foodData.forEach(item => {
+        let val = parseFloat(item.price||'0');
+        foodSum += isNaN(val)?0:val;
+      });
+      document.getElementById('sumFood').textContent = foodSum;
+
+      // สรุปค่าจิปาถะ
+      let miscSum = 0;
+      miscData.forEach(item => {
+        let val = parseFloat(item.price||'0');
+        miscSum += isNaN(val)?0:val;
+      });
+      document.getElementById('sumMisc').textContent = miscSum;
+
+      // รวมทุกหมวด
+      document.getElementById('sumTotal').textContent = hotelSum + transportSum + foodSum + miscSum;
+    }
+
+    // render list เมื่อโหลดใหม่ (ป้องกัน bug)
+    renderTransportList();
+    renderFoodList();
+    renderMiscList();
+
+  </script>
+</body>
+</html>
