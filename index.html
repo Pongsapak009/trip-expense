@@ -5,162 +5,25 @@
   <title>Trip Expense Summary</title>
   <link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Mali', cursive, sans-serif;
-      background: linear-gradient(135deg, #fceabb 0%, #f8b6d8 100%);
-      padding: 20px;
-      min-height: 100vh;
-      color: #6d4584;
-    }
-    h1 {
-      color: #eb6ea5;
-      background: #fff4fa;
-      padding: 12px 24px;
-      border-radius: 22px;
-      margin-bottom: 24px;
-      font-size: 2.3em;
-      letter-spacing: 1.5px;
-      text-align: center;
-      box-shadow: 0 4px 16px #f8b6d844;
-    }
-    .section {
-      background: #fff;
-      border: 3px solid #ffd8f0;
-      padding: 22px 18px;
-      margin-top: 22px;
-      border-radius: 22px;
-      box-shadow: 0 4px 18px #fccde288;
-      position: relative;
-    }
-    .section h3 {
-      color: #a477d1;
-      font-size: 1.4em;
-      background: linear-gradient(90deg, #ffe0ef 70%, #e8e9fd 100%);
-      padding: 8px 16px;
-      border-radius: 14px;
-      margin-top: -28px;
-      display: inline-block;
-      margin-bottom: 16px;
-      border: 2px solid #edb1d6;
-      box-shadow: 0 2px 8px #e5baff33;
-    }
-    label {
-      display: block;
-      margin-top: 10px;
-      color: #744e8e;
-      font-size: 1.09em;
-    }
-    input[type='text'], input[type='number'], input[type='date'], select {
-      padding: 6px 12px;
-      margin: 4px 8px 4px 0;
-      border-radius: 10px;
-      border: 1.5px solid #ebc1e6;
-      font-family: 'Mali', cursive, sans-serif;
-      font-size: 1em;
-      background: #fff6fd;
-      color: #6d4584;
-      outline: none;
-      transition: border 0.2s;
-    }
-    input[type='text']:focus, input[type='number']:focus, input[type='date']:focus, select:focus {
-      border: 2px solid #a477d1;
-      background: #fff1fa;
-    }
-    .list-box {
-      margin: 18px 0 6px 0;
-      border-radius: 15px;
-      background: #fffafd;
-      box-shadow: 0 2px 6px #e5baff44;
-      padding: 12px 12px 3px 12px;
-      min-height: 30px;
-    }
-    .list-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: linear-gradient(90deg,#fff 80%,#ffe0ef 100%);
-      border-radius: 11px;
-      margin-bottom: 8px;
-      padding: 8px 10px;
-      font-size: 1.03em;
-      border: 1px solid #f6c7e9;
-      box-shadow: 0 1px 5px #e5baff22;
-      transition: background 0.2s;
-    }
-    .list-item span {
-      flex: 1;
-      color: #7a4897;
-    }
-    .danger {
-      background: linear-gradient(135deg,#ffbad2 60%,#e8e9fd 100%);
-      color: #fff;
-      border: none;
-      padding: 4px 20px;
-      border-radius: 9px;
-      font-size: 1em;
-      cursor: pointer;
-      transition: background 0.18s, box-shadow 0.18s;
-      margin-left: 10px;
-      box-shadow: 0 2px 8px #f8b6d822;
-    }
-    .danger:hover {
-      background: linear-gradient(135deg,#e66fa2 40%,#b6b6ec 100%);
-    }
-    .add-btn {
-      background: linear-gradient(135deg,#97cdfd 0%,#e9b5fa 100%);
-      color: #fff;
-      border: none;
-      padding: 7px 22px;
-      border-radius: 15px;
-      font-size: 1em;
-      margin: 10px 5px 0 0;
-      cursor: pointer;
-      transition: background 0.15s, box-shadow 0.18s;
-      box-shadow: 0 3px 13px #b1c0ff22;
-      font-weight: bold;
-      letter-spacing: 1.5px;
-    }
-    .add-btn:disabled, .disabled {
-      opacity: 0.5;
-      pointer-events: none;
-    }
-    .summary-box {
-      border: 3px solid #97cdfd;
-      background: linear-gradient(90deg,#f5fff6 70%,#f6eaff 100%);
-      margin-top: 40px;
-      color: #7a4897;
-      box-shadow: 0 3px 15px #bbcaf644;
-      font-size: 1.14em;
-      border-radius: 22px;
-      padding: 23px;
-      text-align: center;
-    }
-    .summary-box .total-amount {
-      color: #fff;
-      background: linear-gradient(90deg,#eb6ea5 60%,#a477d1 100%);
-      display: inline-block;
-      margin: 14px 0 4px 0;
-      border-radius: 12px;
-      padding: 6px 24px;
-      font-size: 1.28em;
-      font-weight: bold;
-      box-shadow: 0 2px 9px #e5baff66;
-    }
+    body { font-family: 'Mali', cursive, sans-serif; background: linear-gradient(135deg, #fceabb 0%, #f8b6d8 100%); padding: 20px; min-height: 100vh; color: #6d4584; }
+    h1 { color: #eb6ea5; background: #fff4fa; padding: 12px 24px; border-radius: 22px; margin-bottom: 24px; font-size: 2.3em; letter-spacing: 1.5px; text-align: center; box-shadow: 0 4px 16px #f8b6d844; }
+    .section { background: #fff; border: 3px solid #ffd8f0; padding: 22px 18px; margin-top: 22px; border-radius: 22px; box-shadow: 0 4px 18px #fccde288; position: relative; }
+    .section h3 { color: #a477d1; font-size: 1.4em; background: linear-gradient(90deg, #ffe0ef 70%, #e8e9fd 100%); padding: 8px 16px; border-radius: 14px; margin-top: -28px; display: inline-block; margin-bottom: 16px; border: 2px solid #edb1d6; box-shadow: 0 2px 8px #e5baff33; }
+    label { display: block; margin-top: 10px; color: #744e8e; font-size: 1.09em; }
+    input[type='text'], input[type='number'], input[type='date'], select { padding: 6px 12px; margin: 4px 8px 4px 0; border-radius: 10px; border: 1.5px solid #ebc1e6; font-family: 'Mali', cursive, sans-serif; font-size: 1em; background: #fff6fd; color: #6d4584; outline: none; transition: border 0.2s; }
+    input[type='text']:focus, input[type='number']:focus, input[type='date']:focus, select:focus { border: 2px solid #a477d1; background: #fff1fa; }
+    .list-box { margin: 18px 0 6px 0; border-radius: 15px; background: #fffafd; box-shadow: 0 2px 6px #e5baff44; padding: 12px 12px 3px 12px; min-height: 30px; }
+    .list-item { display: flex; align-items: center; justify-content: space-between; background: linear-gradient(90deg,#fff 80%,#ffe0ef 100%); border-radius: 11px; margin-bottom: 8px; padding: 8px 10px; font-size: 1.03em; border: 1px solid #f6c7e9; box-shadow: 0 1px 5px #e5baff22; transition: background 0.2s; }
+    .list-item span { flex: 1; color: #7a4897; }
+    .danger { background: linear-gradient(135deg,#ffbad2 60%,#e8e9fd 100%); color: #fff; border: none; padding: 4px 20px; border-radius: 9px; font-size: 1em; cursor: pointer; transition: background 0.18s, box-shadow 0.18s; margin-left: 10px; box-shadow: 0 2px 8px #f8b6d822; }
+    .danger:hover { background: linear-gradient(135deg,#e66fa2 40%,#b6b6ec 100%); }
+    .add-btn { background: linear-gradient(135deg,#97cdfd 0%,#e9b5fa 100%); color: #fff; border: none; padding: 7px 22px; border-radius: 15px; font-size: 1em; margin: 10px 5px 0 0; cursor: pointer; transition: background 0.15s, box-shadow 0.18s; box-shadow: 0 3px 13px #b1c0ff22; font-weight: bold; letter-spacing: 1.5px; }
+    .add-btn:disabled, .disabled { opacity: 0.5; pointer-events: none; }
+    .summary-box { border: 3px solid #97cdfd; background: linear-gradient(90deg,#f5fff6 70%,#f6eaff 100%); margin-top: 40px; color: #7a4897; box-shadow: 0 3px 15px #bbcaf644; font-size: 1.14em; border-radius: 22px; padding: 23px; text-align: center; }
+    .summary-box .total-amount { color: #fff; background: linear-gradient(90deg,#eb6ea5 60%,#a477d1 100%); display: inline-block; margin: 14px 0 4px 0; border-radius: 12px; padding: 6px 24px; font-size: 1.28em; font-weight: bold; box-shadow: 0 2px 9px #e5baff66; }
     .warn { color: #e66fa2; font-weight: bold; }
-    .hotel-group {
-      background: #fcf6ff;
-      border-radius: 15px;
-      box-shadow: 0 1px 6px #e5baff33;
-      padding: 12px 10px 3px 12px;
-      margin-bottom: 10px;
-      border: 1.5px solid #edb1d6;
-    }
-    .hotel-group button {
-      float: right;
-      margin-top: -38px;
-      margin-right: 0;
-      position: relative;
-    }
+    .hotel-group { background: #fcf6ff; border-radius: 15px; box-shadow: 0 1px 6px #e5baff33; padding: 12px 10px 3px 12px; margin-bottom: 10px; border: 1.5px solid #edb1d6; }
+    .hotel-group button { float: right; margin-top: -38px; margin-right: 0; position: relative; }
     @media (max-width: 650px) {
       .list-item, .hotel-group { font-size: 0.95em; flex-direction: column; align-items: flex-start;}
       .list-item button { margin-left: 0; margin-top: 8px;}
@@ -241,10 +104,11 @@
   </div>
 
   <script>
-    let hotelCount = 0;
+    let hotelData = []; // ใช้แทน hotelCount/hotelGroup เดิม
     let transportData = [];
     let foodData = [];
     let miscData = [];
+    let hotelIdSeed = 0;
 
     function getTripDays() {
       const s = document.getElementById('startDate').value;
@@ -272,45 +136,88 @@
     document.getElementById('startDate').addEventListener('change', updateTripDays);
     document.getElementById('endDate').addEventListener('change', updateTripDays);
 
+    // --------------------- ที่พัก ---------------------
+    function renderHotelList() {
+      const hotelsDiv = document.getElementById('hotels');
+      hotelsDiv.innerHTML = '';
+      hotelData.forEach((hotel, idx) => {
+        const div = document.createElement('div');
+        div.className = 'hotel-group';
+        div.dataset.hotelId = hotel.id;
+        div.innerHTML = `
+          <label>ชื่อที่พัก: <input type="text" class="hotelName" value="${hotel.name||''}" data-idx="${idx}"></label>
+          <label>วันที่เข้าพัก: <input type="date" class="hotelStartDate" value="${hotel.startDate||''}" data-idx="${idx}"></label>
+          <label>วันที่ออก: <input type="date" class="hotelEndDate" value="${hotel.endDate||''}" data-idx="${idx}"></label>
+          <label>ราคารวม: <input type="number" class="hotelPrice" value="${hotel.price||''}" data-idx="${idx}"></label>
+          <label><input type="checkbox" class="includeBreakfast" data-idx="${idx}" ${hotel.includeBreakfast?'checked':''}> รวมอาหารเช้า</label>
+          <button class="danger" onclick="removeHotel(${idx})">ลบ</button>
+          <hr />
+        `;
+        hotelsDiv.appendChild(div);
+      });
+
+      // bind onchange
+      hotelsDiv.querySelectorAll('.hotelName').forEach(input => {
+        input.oninput = function() {
+          hotelData[this.dataset.idx].name = this.value;
+          saveAllListsToStorage();
+        }
+      });
+      hotelsDiv.querySelectorAll('.hotelStartDate').forEach(input => {
+        input.oninput = function() {
+          hotelData[this.dataset.idx].startDate = this.value;
+          validateHotelDates();
+          updateHotelNightLimit();
+          calcAllSums();
+          saveAllListsToStorage();
+        }
+      });
+      hotelsDiv.querySelectorAll('.hotelEndDate').forEach(input => {
+        input.oninput = function() {
+          hotelData[this.dataset.idx].endDate = this.value;
+          validateHotelDates();
+          updateHotelNightLimit();
+          calcAllSums();
+          saveAllListsToStorage();
+        }
+      });
+      hotelsDiv.querySelectorAll('.hotelPrice').forEach(input => {
+        input.oninput = function() {
+          hotelData[this.dataset.idx].price = this.value;
+          calcAllSums();
+          saveAllListsToStorage();
+        }
+      });
+      hotelsDiv.querySelectorAll('.includeBreakfast').forEach(input => {
+        input.onchange = function() {
+          hotelData[this.dataset.idx].includeBreakfast = this.checked;
+          saveAllListsToStorage();
+        }
+      });
+
+      updateAllDateLimits();
+      updateAddHotelButton();
+    }
     function addHotel() {
-      hotelCount++;
-      const div = document.createElement('div');
-      div.className = 'hotel-group';
-      div.id = 'hotelDiv'+hotelCount;
-      div.innerHTML = `
-        <label>ชื่อที่พัก: <input type="text" class="hotelName" onchange="calcAllSums()"></label>
-        <label>วันที่เข้าพัก: <input type="date" class="hotelStartDate" onchange="validateHotelDates(this);updateHotelNightLimit();calcAllSums()"></label>
-        <label>วันที่ออก: <input type="date" class="hotelEndDate" onchange="validateHotelDates(this);updateHotelNightLimit();calcAllSums()"></label>
-        <label>ราคารวม: <input type="number" class="hotelPrice" onchange="calcAllSums()"></label>
-        <label><input type="checkbox" class="includeBreakfast"> รวมอาหารเช้า</label>
-        <button class="danger" onclick="removeHotel(this)">ลบ</button>
-        <hr />
-      `;
-      document.getElementById('hotels').appendChild(div);
+      hotelData.push({
+        id: hotelIdSeed++,
+        name: '',
+        startDate: '',
+        endDate: '',
+        price: '',
+        includeBreakfast: false
+      });
+      renderHotelList();
       updateAllDateLimits();
       calcAllSums();
-      updateAddHotelButton();
+      saveAllListsToStorage();
     }
-    function removeHotel(btn) {
-      btn.closest('.hotel-group').remove();
+    function removeHotel(idx) {
+      hotelData.splice(idx, 1);
+      renderHotelList();
       updateHotelNightLimit();
       calcAllSums();
-      updateAddHotelButton();
-    }
-    function updateMinEndDate() {
-      const start = document.getElementById('startDate').value;
-      document.getElementById('endDate').min = start;
-      updateTripDays();
-    }
-    function updateAllDateLimits() {
-      const s = document.getElementById('startDate').value;
-      const e = document.getElementById('endDate').value;
-      ["transportDate","foodDate","miscDate"].forEach(id=>{
-        document.getElementById(id).min = s;
-        document.getElementById(id).max = e;
-      });
-      document.querySelectorAll('.hotelStartDate').forEach(input => { input.min = s; input.max = e; });
-      document.querySelectorAll('.hotelEndDate').forEach(input => { input.min = s; input.max = e; });
+      saveAllListsToStorage();
     }
     function countHotelNights(start, end) {
       if (!start || !end) return 0;
@@ -318,23 +225,20 @@
       let diff = Math.ceil((d2 - d1) / (1000*60*60*24));
       return diff > 0 ? diff : 0;
     }
-    function validateHotelDates(input) {
-      let div = input.closest('.hotel-group');
-      let inDate = div.querySelector('.hotelStartDate').value;
-      let outDate = div.querySelector('.hotelEndDate').value;
-      if (inDate && outDate && outDate <= inDate) {
-        div.querySelector('.hotelEndDate').value = '';
-      }
+    function validateHotelDates() {
+      hotelData.forEach((hotel, idx) => {
+        if(hotel.startDate && hotel.endDate && hotel.endDate <= hotel.startDate){
+          hotel.endDate = '';
+        }
+      });
+      renderHotelList();
       updateHotelNightLimit();
-      calcAllSums();
       updateAddHotelButton();
     }
     function updateHotelNightLimit() {
       let totalNights = 0;
-      document.querySelectorAll('.hotel-group').forEach(div => {
-        let inDate = div.querySelector('.hotelStartDate').value;
-        let outDate = div.querySelector('.hotelEndDate').value;
-        totalNights += countHotelNights(inDate, outDate);
+      hotelData.forEach(hotel => {
+        totalNights += countHotelNights(hotel.startDate, hotel.endDate);
       });
       let tripNights = getTripNights();
       if (totalNights > tripNights) {
@@ -345,17 +249,14 @@
       updateAddHotelButton();
     }
     function updateAddHotelButton() {
-      const hotelDivs = document.querySelectorAll('.hotel-group');
       const btn = document.getElementById('addHotelBtn');
       const tripNights = getTripNights();
       let totalNights = 0;
       let canAdd = true;
-      hotelDivs.forEach((div, idx) => {
-        let inDate = div.querySelector('.hotelStartDate').value;
-        let outDate = div.querySelector('.hotelEndDate').value;
-        let nights = countHotelNights(inDate, outDate);
+      hotelData.forEach((hotel, idx) => {
+        let nights = countHotelNights(hotel.startDate, hotel.endDate);
         totalNights += nights;
-        if(idx === hotelDivs.length-1 && (!inDate || !outDate || nights === 0)) {
+        if(idx === hotelData.length-1 && (!hotel.startDate || !hotel.endDate || nights === 0)) {
           canAdd = false;
         }
       });
@@ -367,17 +268,26 @@
         btn.classList.remove('disabled');
       }
     }
+    function updateAllDateLimits() {
+      const s = document.getElementById('startDate').value;
+      const e = document.getElementById('endDate').value;
+      ["transportDate","foodDate","miscDate"].forEach(id=>{
+        document.getElementById(id).min = s;
+        document.getElementById(id).max = e;
+      });
+      document.querySelectorAll('.hotelStartDate').forEach(input => { input.min = s; input.max = e; });
+      document.querySelectorAll('.hotelEndDate').forEach(input => { input.min = s; input.max = e; });
+    }
     function formatDateTH(isoDateStr) {
       if (!isoDateStr) return '';
       const [y, m, d] = isoDateStr.split('-');
       return `${d}/${m}/${parseInt(y) + 543}`;
     }
 
-    // ----- หมวด เดินทาง -----
+    // --------------------- ค่าเดินทาง/อาหาร/จิปาถะ ---------------------
     function renderTransportList() {
       const listDiv = document.getElementById('transportList');
       listDiv.innerHTML = '';
-      // เรียงวันจากน้อยไปมาก
       const sorted = [...transportData].sort((a, b) => a.date.localeCompare(b.date));
       sorted.forEach(item => {
         const realIdx = transportData.findIndex(x => x === item);
@@ -402,14 +312,14 @@
       transportData.push({date, type, detail, price});
       renderTransportList();
       calcAllSums();
+      saveAllListsToStorage();
     }
     function removeTransport(idx) {
       transportData.splice(idx, 1);
       renderTransportList();
       calcAllSums();
+      saveAllListsToStorage();
     }
-
-    // ----- หมวด อาหาร -----
     function renderFoodList() {
       const listDiv = document.getElementById('foodList');
       listDiv.innerHTML = '';
@@ -436,14 +346,14 @@
       foodData.push({date, detail, price});
       renderFoodList();
       calcAllSums();
+      saveAllListsToStorage();
     }
     function removeFood(idx) {
       foodData.splice(idx, 1);
       renderFoodList();
       calcAllSums();
+      saveAllListsToStorage();
     }
-
-    // ----- หมวด จิปาถะ -----
     function renderMiscList() {
       const listDiv = document.getElementById('miscList');
       listDiv.innerHTML = '';
@@ -470,24 +380,25 @@
       miscData.push({date, detail, price});
       renderMiscList();
       calcAllSums();
+      saveAllListsToStorage();
     }
     function removeMisc(idx) {
       miscData.splice(idx, 1);
       renderMiscList();
       calcAllSums();
+      saveAllListsToStorage();
     }
 
-    // ------ รวมยอด ------
+    // --------------------- รวมยอด ---------------------
     function calcAllSums() {
-      // สรุปยอดที่พัก
+      // ที่พัก
       let hotelSum = 0;
-      document.querySelectorAll('.hotel-group').forEach(div => {
-        let price = parseFloat(div.querySelector('.hotelPrice').value||'0');
+      hotelData.forEach(hotel => {
+        let price = parseFloat(hotel.price||'0');
         hotelSum += isNaN(price)?0:price;
       });
       document.getElementById('sumHotel').textContent = hotelSum;
 
-      // สรุปค่าเดินทาง
       let transportSum = 0;
       transportData.forEach(item => {
         let val = parseFloat(item.price||'0');
@@ -495,7 +406,6 @@
       });
       document.getElementById('sumTransport').textContent = transportSum;
 
-      // สรุปค่าอาหาร
       let foodSum = 0;
       foodData.forEach(item => {
         let val = parseFloat(item.price||'0');
@@ -503,7 +413,6 @@
       });
       document.getElementById('sumFood').textContent = foodSum;
 
-      // สรุปค่าจิปาถะ
       let miscSum = 0;
       miscData.forEach(item => {
         let val = parseFloat(item.price||'0');
@@ -511,15 +420,73 @@
       });
       document.getElementById('sumMisc').textContent = miscSum;
 
-      // รวมทุกหมวด
       document.getElementById('sumTotal').textContent = hotelSum + transportSum + foodSum + miscSum;
     }
 
+    // --------------------- เก็บ input + list/array + ที่พัก ---------------------
+    const formFields = [
+      'startDate', 'endDate',
+      'transportDate', 'transportType', 'transportDetail', 'transportPrice',
+      'foodDate', 'foodDetail', 'foodPrice',
+      'miscDate', 'miscDetail', 'miscPrice'
+    ];
+    formFields.forEach(id => {
+      const el = document.getElementById(id);
+      if(el){
+        el.addEventListener('input', function(){
+          localStorage.setItem('trip_' + id, this.value);
+        });
+      }
+    });
+    function saveAllListsToStorage() {
+      localStorage.setItem('trip_hotelData', JSON.stringify(hotelData));
+      localStorage.setItem('trip_hotelIdSeed', hotelIdSeed);
+      localStorage.setItem('trip_transportData', JSON.stringify(transportData));
+      localStorage.setItem('trip_foodData', JSON.stringify(foodData));
+      localStorage.setItem('trip_miscData', JSON.stringify(miscData));
+    }
+    // โหลดค่ากลับเมื่อเข้าใหม่
+    window.addEventListener('DOMContentLoaded', function(){
+      formFields.forEach(id => {
+        const el = document.getElementById(id);
+        let val = localStorage.getItem('trip_' + id);
+        if(el && val){
+          el.value = val;
+        }
+      });
+
+      // สำหรับที่พัก
+      let h = localStorage.getItem('trip_hotelData');
+      if(h) {
+        try { hotelData = JSON.parse(h); } catch(e){ hotelData = []; }
+      }
+      let hotelSeed = localStorage.getItem('trip_hotelIdSeed');
+      if(hotelSeed) hotelIdSeed = parseInt(hotelSeed) || 0;
+
+      let t = localStorage.getItem('trip_transportData');
+      if(t) {
+        try { transportData = JSON.parse(t); } catch(e){}
+      }
+      let f = localStorage.getItem('trip_foodData');
+      if(f) {
+        try { foodData = JSON.parse(f); } catch(e){}
+      }
+      let m = localStorage.getItem('trip_miscData');
+      if(m) {
+        try { miscData = JSON.parse(m); } catch(e){}
+      }
+      renderHotelList();
+      renderTransportList();
+      renderFoodList();
+      renderMiscList();
+      calcAllSums();
+    });
+
     // render list เมื่อโหลดใหม่ (ป้องกัน bug)
+    renderHotelList();
     renderTransportList();
     renderFoodList();
     renderMiscList();
-
   </script>
 </body>
 </html>
